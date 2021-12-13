@@ -1,4 +1,4 @@
-
+-- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE "User" (
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
-
+-- CreateTable
 CREATE TABLE "Film" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
@@ -26,26 +26,26 @@ CREATE TABLE "Film" (
     CONSTRAINT "Film_pkey" PRIMARY KEY ("id")
 );
 
-
+-- CreateTable
 CREATE TABLE "_FilmToUser" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
 );
 
-
+-- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
-
+-- CreateIndex
 CREATE UNIQUE INDEX "Film_name_key" ON "Film"("name");
 
-
+-- CreateIndex
 CREATE UNIQUE INDEX "_FilmToUser_AB_unique" ON "_FilmToUser"("A", "B");
 
-
+-- CreateIndex
 CREATE INDEX "_FilmToUser_B_index" ON "_FilmToUser"("B");
 
-
+-- AddForeignKey
 ALTER TABLE "_FilmToUser" ADD FOREIGN KEY ("A") REFERENCES "Film"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
-
+-- AddForeignKey
 ALTER TABLE "_FilmToUser" ADD FOREIGN KEY ("B") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
